@@ -14,13 +14,11 @@ describe('Transaction', () => {
   beforeAll(async () => {
     connection = await createConnection('test-connection');
 
-    if (connection.options.synchronize !== true) {
-      await connection.query('DROP TABLE IF EXISTS transactions');
-      await connection.query('DROP TABLE IF EXISTS categories');
-      await connection.query('DROP TABLE IF EXISTS migrations');
+    await connection.query('DROP TABLE IF EXISTS transactions');
+    await connection.query('DROP TABLE IF EXISTS categories');
+    await connection.query('DROP TABLE IF EXISTS migrations');
 
-      await connection.runMigrations();
-    }
+    await connection.runMigrations();
   });
 
   beforeEach(async () => {
